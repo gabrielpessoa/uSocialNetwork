@@ -76,4 +76,6 @@ public interface UserSocialNetworkFacade {
 	 */
 	public void removeUserById(int id);
 
+	public void updateUserById(int id);
+
 }

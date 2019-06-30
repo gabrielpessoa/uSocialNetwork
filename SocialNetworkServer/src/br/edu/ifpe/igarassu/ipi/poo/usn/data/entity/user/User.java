@@ -12,6 +12,7 @@
 package br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.Entity;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.exception.InvalidDataException;
 
 /**
  * 
@@ -26,6 +27,8 @@ public class User extends Entity {
 	
 	// the passord of the user
 	private String password;
+	private String email;
+	private String username;
 
 	/**
 	 * 
@@ -35,10 +38,12 @@ public class User extends Entity {
 	 * @param name the name of the user
 	 * @param password the password of the user
 	 */
-	public User(long id, String name, String password) {
+	public User(long id, String name, String password, String email, String username)throws InvalidDataException {
 		super(id);
-		this.name = name;
-		this.password = password;
+		this.setName(name);
+		this.setPassword(password);
+		this.setEmail(email);
+		this.setUsername(username);
 	}
 
 	/**
@@ -57,7 +62,10 @@ public class User extends Entity {
 	 * 
 	 * @param name the new name of the user
 	 */
-	public void setName(String name) {
+	public void setName(String name) throws InvalidDataException {
+		if(name==null || name.length()==0){
+			throw new InvalidDataException("Nome Inválido");
+		}
 		this.name = name;
 	}
 
@@ -77,8 +85,33 @@ public class User extends Entity {
 	 * 
 	 * @param password the new password of the user
 	 */
-	public void setPassword(String password) {
+	public void setPassword(String password) throws InvalidDataException {
+		if(password==null || password.length()==0){
+			throw new InvalidDataException("Senha Inválida");
+		}
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) throws InvalidDataException {
+		if(email==null || email.length()==0){
+			throw new InvalidDataException("E-mail Inválido");
+		}
+		this.email = email;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) throws InvalidDataException {
+		if(username==null || username.length()==0){
+			throw new InvalidDataException("Username Inválido");
+		}
+		this.username = username;
 	}
 
 }

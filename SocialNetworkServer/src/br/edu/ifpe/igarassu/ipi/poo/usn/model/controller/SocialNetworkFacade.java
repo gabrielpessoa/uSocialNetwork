@@ -102,5 +102,10 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 		this.UsersDAO.removeById(id);
 
 	}
+	@Override
+	public void updateUserById(int id) {
+		this.UsersDAO.updateById(id);
+	}
+
 
 }

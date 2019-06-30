@@ -13,22 +13,21 @@ package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sun.net.httpserver.HttpExchange;
 
-import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.UserSocialNetworkFacade;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.AbstractHandler;
 
 /**
  *
- * Handles a request to add an user.
+ * Handles a request to remove an user by its id.
  * 
  * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
  *
  */
-public class AddUserHandler extends AbstractHandler {
+public class UpdateUserByIdHandler extends AbstractHandler {
 
 	/**
 	 * 
@@ -37,50 +36,39 @@ public class AddUserHandler extends AbstractHandler {
 	 * @param facade the facade of the system, containing the methods necessary to
 	 *               the operation handled by this class
 	 */
-	public AddUserHandler(UserSocialNetworkFacade facade) {
+	public UpdateUserByIdHandler(UserSocialNetworkFacade facade) {
 		super(facade);
 	}
 
 	/**
 	 * 
-	 * Handles a request to add an user.
+	 * Handles a request to remove an user by its id.
 	 * 
-	 * @param exchange the object containing the metadata of the request
+	 * @param exchange the object containing the metadata of the resquest
 	 * 
 	 */
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
+		printRequestInfo(exchange);
+
 		try {
-			printRequestInfo(exchange);
+			String[] path = exchange.getRequestURI().getPath().split("/");
 
-			// get the post metadata
-			Map<String, Object> parameters = parsePostParameters(exchange);
-
-			// gets the data nedded to crate a new user
-			String name = parameters.get("name").toString();
-			String password = parameters.get("password").toString();
-			String email = parameters.get("email").toString();
-			String username = parameters.get("username").toString();
-			int id = super.getFacade().numberOfUsers();
-
-			System.out.println("add user " + id + " | " + name + " | " + password + " | " +  email + " | " + username);
-
-			User newUser = new User(id, name, password, email, username);
+			System.out.println(path[3]);
 
 			// TODO handle errors correctly
-
-			// performs the add
-			super.getFacade().addUser(newUser);
+			getFacade().updateUserById(Integer.parseInt(path[3]));
 
 			// TODO change the response to a JSON Object
-			String response = "Sucess";
+			String response = getMapper().writeValueAsString("Sucess");
+			System.out.println(response);
 
 			exchange.sendResponseHeaders(200, response.length());
+
 			OutputStream os = exchange.getResponseBody();
 			os.write(response.getBytes());
 			os.close();
-
-		} catch (Exception ex) {
+		} catch (JsonProcessingException ex) {
 			ex.printStackTrace();
 
 			// TODO change the response to a JSON Object
@@ -92,7 +80,6 @@ public class AddUserHandler extends AbstractHandler {
 			os.write(response.getBytes());
 			os.close();
 		}
-
 	}
 
 }

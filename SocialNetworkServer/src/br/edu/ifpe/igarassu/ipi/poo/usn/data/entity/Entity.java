@@ -18,7 +18,7 @@ package br.edu.ifpe.igarassu.ipi.poo.usn.data.entity;
  * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
  * 
  */
-public abstract class Entity {
+public class Entity {
 	
 	// the id of the entity
 	private long id;
