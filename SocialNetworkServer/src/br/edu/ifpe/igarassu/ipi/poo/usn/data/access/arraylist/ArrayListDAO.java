@@ -113,7 +113,15 @@ public class ArrayListDAO<T extends Entity> {
 
 		return null;
 	}
-
+// 
+	public void updateById(User user){
+		for (int i = 0; i < this.elements.size(); i++) {
+			if (this.elements.get(i).getId() == user.id) {
+				this.elements.(i);
+				return; // once the element is found, the loop stops
+			}
+		}
+	}
 	/**
 	 * 
 	 * Returns the number of elements stored on the collection

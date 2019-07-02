@@ -103,8 +103,8 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 
 	}
 	@Override
-	public void updateUserById(int id) {
-		this.UsersDAO.updateById(id);
+	public void updateUserById(User user) {
+		this.UsersDAO.updateById(user);
 	}
 
 

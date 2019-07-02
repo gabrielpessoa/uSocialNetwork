@@ -49,4 +49,9 @@ public class UserArrayListDAO extends ArrayListDAO<User> implements UserDAO {
 		return result;
 	}
 
+	@Override
+	public void updateById(User user) {
+
+	}
+
 }

@@ -14,17 +14,19 @@ package br.edu.ifpe.igarassu.ipi.poo.usn.test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.exception.InvalidDataException;
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
 
 /**
  * 
- * Small test on how to convert a Java object to a JSOM file using the Jackson library. 
+ * Small test on how to convert a Java object to a JSOM file using the Jackson
+ * library.
  * 
  * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
  *
  */
 public class TestJSON {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidDataException {
 		User usuario = new User(10, "Carla", "312", "sadasdas", "sdasdasd");
 
 		ObjectMapper mapper = new ObjectMapper();

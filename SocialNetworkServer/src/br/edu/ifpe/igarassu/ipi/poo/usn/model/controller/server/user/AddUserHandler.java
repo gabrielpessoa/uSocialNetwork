@@ -61,6 +61,7 @@ public class AddUserHandler extends AbstractHandler {
 			String password = parameters.get("password").toString();
 			String email = parameters.get("email").toString();
 			String username = parameters.get("username").toString();
+			int i = Integer.parseInt(parameters.get("username").toString());
 			int id = super.getFacade().numberOfUsers();
 
 			System.out.println("add user " + id + " | " + name + " | " + password + " | " +  email + " | " + username);

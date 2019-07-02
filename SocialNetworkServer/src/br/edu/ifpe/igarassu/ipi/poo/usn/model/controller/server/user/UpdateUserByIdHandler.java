@@ -19,6 +19,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.UserSocialNetworkFacade;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.AbstractHandler;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user;
 
 /**
  *
@@ -58,6 +59,8 @@ public class UpdateUserByIdHandler extends AbstractHandler {
 
 			// TODO handle errors correctly
 			getFacade().updateUserById(Integer.parseInt(path[3]));
+			UserSocialNetworkFacade user =  getFacade().updateUserById(Integer.parseInt(path[3]));
+			
 
 			// TODO change the response to a JSON Object
 			String response = getMapper().writeValueAsString("Sucess");
