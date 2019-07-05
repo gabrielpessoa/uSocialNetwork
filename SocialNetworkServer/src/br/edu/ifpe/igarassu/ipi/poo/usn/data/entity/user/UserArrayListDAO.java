@@ -50,8 +50,10 @@ public class UserArrayListDAO extends ArrayListDAO<User> implements UserDAO {
 	}
 
 	@Override
-	public void updateById(User user) {
+	public void updateById(long id) {
 
 	}
+
+
 
 }

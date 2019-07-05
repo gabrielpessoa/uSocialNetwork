@@ -9,7 +9,7 @@
  *
  */
 
-package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user;
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.post;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -22,12 +22,12 @@ import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.AbstractHandler;
 
 /**
  *
- * Handles a request to remove an user by its id.
+ * Handles a request to remove an post by its id.
  * 
  * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
  *
  */
-public class UpdateUserByIdHandler extends AbstractHandler {
+public class RemovePostByIdHandler extends AbstractHandler {
 
 	/**
 	 * 
@@ -36,13 +36,13 @@ public class UpdateUserByIdHandler extends AbstractHandler {
 	 * @param facade the facade of the system, containing the methods necessary to
 	 *               the operation handled by this class
 	 */
-	public UpdateUserByIdHandler(UserSocialNetworkFacade facade) {
+	public RemovePostByIdHandler(UserSocialNetworkFacade facade) {
 		super(facade);
 	}
 
 	/**
 	 * 
-	 * Handles a request to remove an user by its id.
+	 * Handles a request to remove an post by its id.
 	 * 
 	 * @param exchange the object containing the metadata of the resquest
 	 * 
@@ -57,7 +57,7 @@ public class UpdateUserByIdHandler extends AbstractHandler {
 			System.out.println(path[3]);
 
 			// TODO handle errors correctly
-			getFacade().updateUserById(Integer.parseInt(path[3]));
+			getFacade().removePostById(Integer.parseInt(path[3]));
 
 			// TODO change the response to a JSON Object
 			String response = getMapper().writeValueAsString("Sucess");

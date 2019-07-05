@@ -16,13 +16,20 @@ import java.net.InetSocketAddress;
 import com.sun.net.httpserver.HttpServer;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.post.Post;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.SocialNetworkFacade;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.UserSocialNetworkFacade;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.PostSocialNetworkFacade;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.post.AddPostHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user.AddUserHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user.GetUserByIdHandler;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.post.GetPostByIdHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user.ListUserHandler;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.post.ListPostHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user.RemoveUserByIdHandler;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.post.RemovePostByIdHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user.SearchByNameUserHandler;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.post.SearchByNamePostHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user.UpdateUserByIdHandler;
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.exception.InvalidDataException;
 
@@ -49,7 +56,12 @@ public class SocialNetworkServer {
 		server.createContext("/user/update", new UpdateUserByIdHandler(facade));
 		server.createContext("/user/search", new SearchByNameUserHandler(facade));
 		server.createContext("/user/list", new ListUserHandler(facade));
-		// server.createContext("/html/index", new ListUserHandler(facade));
+		server.createContext("/post/add", new AddPostHandler(facade));
+		server.createContext("/post/remove", new RemovePostByIdHandler(facade));
+		server.createContext("/post/get", new GetPostByIdHandler(facade));
+		server.createContext("/post/list", new ListPostHandler(facade));
+		server.createContext("/post/search", new SearchByNamePostHandler(facade));
+		//server.createContext("/html/index", new ListUserHandler(facade));
 		server.setExecutor(null);
 
 		server.start();
@@ -62,6 +74,7 @@ public class SocialNetworkServer {
 			facade.addUser(new User(2, "Marcos", "451", "sdfsdfdsf", "sdsadasd"));
 			facade.addUser(new User(3, "Joao", "123", "sfsfdsad", "sdsadasd"));
 			facade.addUser(new User(4, "Joana", "171", "sfsfdsad", "sdsadasd"));
+			facade.addPost(new Post(1, 2,"sdsadasd"));
 		}
 		catch(InvalidDataException ex){
 			System.out.println(ex);

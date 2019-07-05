@@ -31,6 +31,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.SocialNetworkFacade;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.PostSocialNetworkFacade;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.UserSocialNetworkFacade;
 
 /**
@@ -44,6 +45,7 @@ public abstract class AbstractHandler implements HttpHandler {
 
 	// the facade of the social network containing the methods needed for the operations performed by the handles 
 	private UserSocialNetworkFacade facade = null;
+	
 
 	// object from the jackson library used the converts objects to JSOM and vice versa 
 	private ObjectMapper mapper = new ObjectMapper();
@@ -58,6 +60,7 @@ public abstract class AbstractHandler implements HttpHandler {
 		this.facade = facade;
 	}
 	
+
 	/**
 	 * 
 	 * Returns the facade of the social network
@@ -67,6 +70,13 @@ public abstract class AbstractHandler implements HttpHandler {
 	public UserSocialNetworkFacade getFacade() {
 		return this.facade;
 	}
+
+	/**
+	 * 
+	 * Returns the facade of the social network
+	 * 
+	 * @return the facade of the social network
+	 */
 	
 	/**
 	 * 

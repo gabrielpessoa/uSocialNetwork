@@ -16,6 +16,9 @@ import java.util.List;
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserArrayListDAO;
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserDAO;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.post.Post;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.post.PostArrayListDAO;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.post.PostDAO;
 
 /**
  *
@@ -25,10 +28,11 @@ import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserDAO;
  * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
  *
  */
-public class SocialNetworkFacade implements UserSocialNetworkFacade {
+public class SocialNetworkFacade implements UserSocialNetworkFacade,PostSocialNetworkFacade {
 
 	// the collection of users
 	private UserDAO UsersDAO = new UserArrayListDAO();
+	private PostDAO PostsDAO = new PostArrayListDAO();
 
 	/**
 	 * 
@@ -102,9 +106,51 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 		this.UsersDAO.removeById(id);
 
 	}
+
 	@Override
-	public void updateUserById(User user) {
-		this.UsersDAO.updateById(user);
+	public void updateUserById(int id) {
+		this.UsersDAO.updateById(id);
+	}
+//---------------------------------------------------------------
+	@Override
+	/**
+	 * 
+	 * Add an post
+	 * 
+	 * @param post the post to be added
+	 */
+	public void addPost(Post post) {
+		this.PostsDAO.add(post);
+	}
+
+	@Override
+	public Post searchPostById(int postId) {
+		return this.PostsDAO.searchById(postId);
+	}
+
+	@Override
+	public int numberOfPosts() {
+		return this.PostsDAO.size();
+	}
+
+	@Override
+	public List<Post> listPosts() {
+		return this.PostsDAO.list();
+	}
+
+	@Override
+	public List<Post> searchPostByName(String name) {
+		return this.PostsDAO.searchByName(name);
+	}
+
+	@Override
+	public void removePostById(int postId) {
+		this.PostsDAO.removeById(postId);
+	}
+
+	@Override
+	public void updatePostById(int postId) {
+		this.PostsDAO.updateById(postId);
 	}
 
 

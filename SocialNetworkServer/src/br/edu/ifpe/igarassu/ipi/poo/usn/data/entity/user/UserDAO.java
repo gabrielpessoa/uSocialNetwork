@@ -57,6 +57,6 @@ public interface UserDAO {
 	 */
 	public List<User> searchByName(String name);
 
-	public void updateById(User user);
+	public void updateById(long id);
 	
 }

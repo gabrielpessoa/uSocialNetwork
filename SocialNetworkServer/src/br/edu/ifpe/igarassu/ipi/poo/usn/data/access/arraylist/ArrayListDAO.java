@@ -17,6 +17,7 @@ import java.util.List;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.Entity;
 
+
 /**
  * 
  * Represents a template of Data Access Object that saves its data on memory.
@@ -94,6 +95,7 @@ public class ArrayListDAO<T extends Entity> {
 		}
 	}
 
+
 	/**
 	 * 
 	 * Searches for an element on the collection
@@ -113,15 +115,7 @@ public class ArrayListDAO<T extends Entity> {
 
 		return null;
 	}
-// 
-	public void updateById(User user){
-		for (int i = 0; i < this.elements.size(); i++) {
-			if (this.elements.get(i).getId() == user.id) {
-				this.elements.(i);
-				return; // once the element is found, the loop stops
-			}
-		}
-	}
+
 	/**
 	 * 
 	 * Returns the number of elements stored on the collection
